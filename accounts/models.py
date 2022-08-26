@@ -24,3 +24,21 @@ class useraccounts(models.Model):
 
         def __str__(self):
             return self.EmployeeName
+
+class vendors(models.Model):
+    vendorId = models.CharField(max_length=50)
+    vendorName = models.CharField(max_length=100)
+    vendorLoaction = models.CharField(max_length=100)
+    vendorPhone = models.CharField(max_length=100)
+    vendorEmail = models.CharField(max_length=100)
+
+        # most required fields
+    date_started = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "vendor"
+        verbose_name_plural = "vendors"
+
+    def __str__(self):
+        return self.vendorName
+
