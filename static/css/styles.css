@@ -1,0 +1,47 @@
+.unl-bg{
+    background-color: rgb(14, 100, 175);
+}
+
+.unl-btn{
+    background-color: rgb(10, 70, 122);
+}
+
+.text-unl-admin-heading{
+    color:  rgb(213, 229, 243);
+    text-align: center;
+}
+
+.bg-dash{
+    color:  rgb(202, 227, 248);
+    
+}
+
+.admin-body{
+    background-image: url(./images/bg.png);
+    background-color: #cccccc; /* Used if the image is unavailable */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    overflow: auto;
+}
+
+.admin-body, html{
+    overflow: hidden;
+}
+
+.dash-hight{
+    height: 100vh;
+}
+
+body, html {
+    overflow: hidden;
+  }
+
+
+  body{
+    margin-top: 30px;
+}
+
+.hvrbtn:hover{
+    background-color: rgb(14, 100, 175);
+}

@@ -1,0 +1,56 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- bootstrap cdns -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<!-- bootstrap cdns -->
+<link rel="icon" href="{% static 'images/logo.png' %}">
+<title>IT INVENTORY APP</title>
+</head>
+
+<body class="bg-primary bg-opacity-25 admin-body">
+
+<div class="container mt-3">
+  <h3>Fading Modal Example</h3>
+  <p>Click on the button to open the modal.</p>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+    Open modal
+  </button>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content bg-danger opacity-25">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h6 class="modal-title">Wrong Username or Password</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- bootsrap js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<!-- bootsrap js -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+          var myModal = new bootstrap.Modal(document.getElementById('myModal'))
+        myModal.show();
+    });
+</script>
+
+</body>
+</html>

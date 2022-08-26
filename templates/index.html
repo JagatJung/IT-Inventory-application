@@ -1,0 +1,95 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- bootstrap cdns -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<!-- bootstrap cdns -->
+<link rel="icon" href="{% static 'images/logo.png' %}">
+<title>IT INVENTORY APP</title>
+
+<style>
+    .admin-body{
+        background-image: url("{% static 'images/bg.png' %}");
+        background-color: #cccccc; /* Used if the image is unavailable */
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover;
+        overflow: auto;
+    }
+</style>
+</head>
+
+<body class="bg-primary bg-opacity-25 text-light admin-body">
+
+    <h5 class="text-unl-admin-heading mt-2">Welcome</h5>
+    <h2 class="text-unl-admin-heading mt-1 font-weight-bold mb-2">IT Inventory Management System</h2>
+    
+    <div class="d-flex justify-content-center text-light">
+        <div class="row unl-bg col-11 col-md-6 col-lg-5 shadow mb-5 rounded-3 mt-5 p-2">
+            <div class="my-3 py-3 px-5">
+                <form class="row g-3 needs-validation" action="/auth" method="GET" > 
+                    
+                    <div class="form-group">
+                        <label for="validationCustom01" class="form-label">Username</label>
+                        <input type="text" class="form-control " id="validationCustom01" name="username" required>
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                    </div>
+                      
+                    <div class="form-group mt-4">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Password" name="password" required>
+                    </div>
+
+                    <small id="emailHelp" class="form-text text-white-50">Always Keep your account secure</small>
+
+                    <button type="submit" class="btn unl-btn mt-3 w-100 text-white">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <h6 class="text-unl-admin-heading mt-5">Please Contact with IT Support, If you face any problem</h6>
+
+
+
+
+<!-- bootsrap js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<!-- bootsrap js -->
+
+
+{% if modal_indicator == 7 %}
+<!-- The Modal -->
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content unl-btn">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h6 class="modal-title">Wrong Username or Password</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+          var myModal = new bootstrap.Modal(document.getElementById('myModal'))
+        myModal.show();
+    });
+</script>
+{% endif %}  
+
+</body>
+</html>
