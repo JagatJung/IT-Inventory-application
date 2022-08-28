@@ -1,0 +1,30 @@
+{%load static%}
+<div class = "mt-4 col-7">
+    <form action="/venderSubmit">
+        
+        <div class = "form-group">
+            <label for="exampleInputEmail1">Vendor Name</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter the Vendor's Name" aria-label="Username" aria-describedby="basic-addon1" name="vname">
+        </div>
+
+        <div class="form-group mt-4">
+            <label for="exampleInputPassword1">Location</label>
+            <input type="text" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the Vendor's Location" name="vloction">
+        </div>
+
+        <div class="form-group mt-4">
+            <label for="exampleInputPassword1">Email Address</label>
+            <input type="email" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the Vendor's Email Address" name="vmail">
+        </div>
+
+        <div class="form-group mt-4">
+            <label for="exampleInputPassword1">Phone Number</label>
+            <input type="text" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the Vendor's Number" name="vnum">
+        </div>
+
+
+        <small id="emailHelp" class="form-text text-white-50">Make Sure to insert data carefully</small>
+
+        <button type="submit" class="btn unl-btn mt-3 w-100 text-white">Submit</button>
+    </form>
+<div>

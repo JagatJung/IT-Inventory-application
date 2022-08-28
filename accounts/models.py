@@ -34,6 +34,7 @@ class vendors(models.Model):
 
         # most required fields
     date_started = models.DateTimeField(auto_now_add=True)
+    isactive = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = "vendor"

@@ -12,19 +12,102 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 <!-- bootstrap cdns -->
+
+<!-- the cdns for tabular view-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- the cdns for tabular view-->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 <link rel="icon" href="{% static 'images/logo.png' %}">
-<title>IT INVENTORY APP</title>
+
+
+
+
+<title>Entry Tab</title>
 </head>
+<body >
 
-<body class="bg-primary bg-opacity-25 admin-body">
+    <div class="d-flex dash-hight">
 
-<div class="container mt-3">
-  <h3>Fading Modal Example</h3>
-  <p>Click on the button to open the modal.</p>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-    Open modal
-  </button>
-</div>
+        <!-- nav bar portion -->
+        {% block navbar %}
+          {% include "sidenavbar.html" %}
+        {% endblock %}
+
+        
+
+
+
+        <!-- main body starts -->
+        <div class="p-2 flex-fill bd-highlight bg-dash col-12 col-md-10 px-3 overflow-auto">
+            <div class="container text-dark col-12">
+                <h2 class="font-weight-bold">Entry Tab</h2>
+                <p>Make sure to insert the data carefully.</p>
+              
+                <ul class="nav nav-tabs mt-5">
+                  <li class="active"><a data-toggle="tab" href="#home">Issue</a></li>
+                  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+                  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+                  <li><a data-toggle="tab" href="#menu3">Vendor</a></li>
+                </ul>
+              
+                <div class="tab-content">
+                  <div id="home" class="tab-pane fade in active col-10">
+                    <h3 class="mb-5 font-weight-bold">HOME</h3>
+                    <form>
+
+                        <div class = "form-group">
+                            <label for="exampleInputEmail1">Username</label>
+                            <input type="text" class="form-control mt-2" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+    
+                        <div class="form-group mt-4">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+    
+                        <small id="emailHelp" class="form-text text-white-50">Always Keep your account secure</small>
+    
+                        <button type="submit" class="btn unl-btn mt-3 w-100 text-white">Sign In</button>
+                    </form>
+
+
+                  </div>
+                  <div id="menu1" class="tab-pane fade">
+                    <h3>Menu 1</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+                  <div id="menu2" class="tab-pane fade">
+                    <h3>Menu 2</h3>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                  </div>
+
+                  {% comment %} adding the vendor form here {% endcomment %}
+                  <div id="menu3" class="tab-pane fade">
+                    <h4 class="mt-4 font-weight-bold">Enter Vendors Data Here</h4>
+                    {% block vendorForm %}
+                       {% include "vendorform.html" %}
+                    {% endblock %}
+
+                  </div>
+
+                </div>
+              </div>
+        </div>
+        <!-- main body ends -->
+
+    </div>
+
+
+
+
+
 
 <!-- The Modal -->
 <div class="modal fade" id="myModal">
@@ -41,8 +124,9 @@
 
 
 <!-- bootsrap js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 <!-- bootsrap js -->
 
 <script>

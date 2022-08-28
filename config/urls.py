@@ -22,5 +22,9 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('auth/', views.auth, name='auth'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('venderSubmit/', views.addVendor, name='addVendorData'),
+    path('records/', views.DataDashboard, name='Data records'),
+    path('delete_vendor/', views.Delete_Vendors, name='Data deletion'),
+    path('venderEdit/', views.venderEdit, name='Data edit'),
 
 ]

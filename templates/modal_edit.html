@@ -1,0 +1,72 @@
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-align-left" id="ModalHeading">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          
+
+            <div class = "mt-4 col-12 p-2">
+                <form action="/venderEdit">
+                    
+                    <div class = "form-group">
+                        <label for="exampleInputEmail1">Vendor Name</label>
+                        <input type="text" class="form-control mt-2" placeholder="Enter the Vendor's Name" aria-label="Username" aria-describedby="basic-addon1" name="vname" id="modal_name">
+                    </div>
+            
+                    <div class="form-group mt-4">
+                        <label for="exampleInputPassword1">Location</label>
+                        <input type="text" class="form-control mt-2 mb-2"  placeholder="Enter the Vendor's Location" name="vloction" id="modal_location">
+                    </div>
+            
+                    <div class="form-group mt-4">
+                        <label for="exampleInputPassword1">Email Address</label>
+                        <input type="email" class="form-control mt-2 mb-2"  placeholder="Enter the Vendor's Email Address" name="vmail"  id="modal_email">
+                    </div>
+            
+                    <div class="form-group mt-4">
+                        <label for="exampleInputPassword1">Phone Number</label>
+                        <input type="text" class="form-control mt-2 mb-2" placeholder="Enter the Vendor's Number" name="vnum" id="modal_phone">
+                    </div>
+                    
+                    <input type="hidden" id="modal_id" name="vid">
+                    
+                    <small id="emailHelp" class="form-text text-dark-50">Make Sure to insert data carefully</small>
+            
+                    <button type="submit" class="btn btn-primary mt-3 w-100 text-white">Submit</button>
+                </form>
+            <div>
+        </div>
+        
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+        
+      </div>
+    </div>
+  </div>
+
+<script>
+    function openForm(mydata){
+        var get_name = "name_"+mydata;
+        var get_location = "location_"+mydata;
+        var get_phone = "phone_"+mydata;
+        var get_email = "email_"+mydata;
+        document.getElementById("modal_name").value = document.getElementById(get_name).innerHTML;
+        document.getElementById("modal_location").value = document.getElementById(get_location).innerHTML;
+        document.getElementById("modal_phone").value = document.getElementById(get_phone).innerHTML;
+        document.getElementById("modal_email").value = document.getElementById(get_email).innerHTML;
+        document.getElementById("ModalHeading").innerHTML = "Editing : " +document.getElementById(get_name).innerHTML;
+        document.getElementById("modal_id").value = mydata;
+        alert(document.getElementById("modal_id").value);
+    }
+</script>
