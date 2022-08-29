@@ -43,7 +43,7 @@
                             <th>Phone Number</th>
                             <th>Email</th>
                             <th>Start date</th>
-                            <th>id</th>
+                            <th class="noExport">id</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,7 +99,7 @@
 <!--adding the modal-->
         <!-- nav bar portion -->
         {% block modal %}
-          {% include "modal_edit.html" %}
+          {% include "modal_edit_vendor.html" %}
         {% endblock %}
 
 
@@ -122,11 +122,42 @@
 $(document).ready(function() {
     $('#example').DataTable( {
         dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+        buttons: [{
+            extend: 'pdf',
+         
+            exportOptions: {
+                columns: "thead th:not(.noExport)"
+            }
+        },{
+            extend: 'excel',
+            
+            exportOptions: {
+                columns: "thead th:not(.noExport)"
+            }
+        }, {
+            extend: 'csv',
+            
+            exportOptions: {
+                columns: "thead th:not(.noExport)"
+            }
+        }, {
+            extend: 'print',
+            
+            exportOptions: {
+                columns: "thead th:not(.noExport)"
+            }
+        }, {
+            extend: 'copy',
+            
+            exportOptions: {
+                columns: "thead th:not(.noExport)"
+            }
+        }
+    ]
     } );
 } );
+
+document.getElementById("buttons-html5").style.backgroundColor = "red";
 </script>
 </body>
 </html>

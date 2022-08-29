@@ -14,6 +14,7 @@
 <!-- bootstrap cdns -->
 
 <!-- the cdns for tabular view-->
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -50,11 +51,11 @@
                 <h2 class="font-weight-bold">Entry Tab</h2>
                 <p>Make sure to insert the data carefully.</p>
               
-                <ul class="nav nav-tabs mt-5">
-                  <li class="active"><a data-toggle="tab" href="#home">Issue</a></li>
-                  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-                  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-                  <li><a data-toggle="tab" href="#menu3">Vendor</a></li>
+                <ul class="nav nav-tabs mt-4">
+                  <li class="active"><a data-toggle="tab" href="#home" class="text-decoration-none">Issue</a></li>
+                  <li><a data-toggle="tab" href="#menu1" class="text-decoration-none">Menu 1</a></li>
+                  <li><a data-toggle="tab" href="#menu2" class="text-decoration-none">Devices</a></li>
+                  <li><a data-toggle="tab" href="#menu3" class="text-decoration-none">Vendor</a></li>
                 </ul>
               
                 <div class="tab-content">
@@ -64,12 +65,12 @@
 
                         <div class = "form-group">
                             <label for="exampleInputEmail1">Username</label>
-                            <input type="text" class="form-control mt-2" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control mt-2" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
                         </div>
     
                         <div class="form-group mt-4">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Password">
+                            <input type="password" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Password" required>
                         </div>
     
                         <small id="emailHelp" class="form-text text-white-50">Always Keep your account secure</small>
@@ -83,9 +84,15 @@
                     <h3>Menu 1</h3>
                     <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                   </div>
+                  
+                  {% comment %} adding the devicevendor form here {% endcomment %}
                   <div id="menu2" class="tab-pane fade">
-                    <h3>Menu 2</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                    <h4 class="mt-4 font-weight-bold">Enter Devices Data Here</h4>
+                    
+                    {% block deviceForm %}
+                      {% include "deviceForm.html" %}
+                    {% endblock %}
+
                   </div>
 
                   {% comment %} adding the vendor form here {% endcomment %}
@@ -105,30 +112,12 @@
     </div>
 
 
-
-
-
-
-<!-- The Modal -->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content bg-danger opacity-25">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h6 class="modal-title">Wrong Username or Password</h6>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <!-- bootsrap js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 <!-- bootsrap js -->
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <script>
     document.addEventListener("DOMContentLoaded", function(){
           var myModal = new bootstrap.Modal(document.getElementById('myModal'))

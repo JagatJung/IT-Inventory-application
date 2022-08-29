@@ -40,15 +40,18 @@
                     <input type="hidden" id="modal_id" name="vid">
                     
                     <small id="emailHelp" class="form-text text-dark-50">Make Sure to insert data carefully</small>
-            
-                    <button type="submit" class="btn btn-primary mt-3 w-100 text-white">Submit</button>
+                    <br>
+                    <div class="btn-group mt-3 w-100" role="group" aria-label="Basic example">
+                        <button type="submit" class="btn btn-primary w-50 mx-1">Submit</button>
+                        <button type="reset" class="btn btn-danger w-50 mx-1" data-dismiss="modal">Close</button>
+                    </div>
                 </form>
             <div>
         </div>
         
               <!-- Modal footer -->
               <div class="modal-footer">
-                <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
+                
               </div>
         
       </div>
@@ -67,6 +70,9 @@
         document.getElementById("modal_email").value = document.getElementById(get_email).innerHTML;
         document.getElementById("ModalHeading").innerHTML = "Editing : " +document.getElementById(get_name).innerHTML;
         document.getElementById("modal_id").value = mydata;
-        alert(document.getElementById("modal_id").value);
+        
     }
+
+
+   
 </script>

@@ -44,8 +44,7 @@ def DataDashboard(request):
 
 # vendor actions start from here======================================
 def addVendor(request):
-    TIME_ZONE = 'UTC'
-    USE_TZ = True
+  
     vname = str (request.GET.get('vname'))
     vloaction = str (request.GET.get('vloction'))
     vmail = str (request.GET.get('vmail'))
