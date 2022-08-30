@@ -1,27 +1,54 @@
 {%load static%}
 
-    <form action="/deviceSubmit">
+    <form action="/deviceSubmit" class = "mt-3 mb-5">
         
         <div class = "form-group">
-            <label for="exampleInputEmail1">Vendor Name</label>
-            <input type="text" class="form-control mt-2" placeholder="Enter the Vendor's Name" aria-label="Username" aria-describedby="basic-addon1" name="vname" required>
+            <label>Serial Numer</label>
+            <input type="text" class="form-control mt-2" placeholder="Enter the Serial Number of Device" aria-label="Username" aria-describedby="basic-addon1" name="ser_num" required>
         </div>
 
         <div class="form-group mt-4">
-            <label for="exampleInputPassword1">Location</label>
-            <input type="text" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the Vendor's Location" name="vloction" required>
+            <label>Host Name</label>
+            <input type="text" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the host name of device" name="host_name" required>
+        </div>
+
+        
+        <div class="form-group mt-4">
+            <label for="exampleInputPassword1">Device Type</label><br>
+                <select class="form-control mt-2 mb-2" id="inputGroupSelect03" name = "type_id">
+                    {% for x in types %}
+                    {% if x.isactive == True %}
+                                 <option value="{{x.id}}">{{x.typename}}</option>
+                                 {% endif %} 
+                    {% endfor %} 
+                </select>
         </div>
 
         <div class="form-group mt-4">
-            <label for="exampleInputPassword1">Email Address</label>
-            <input type="email" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the Vendor's Email Address" name="vmail" required>
+            <label for="exampleInputPassword1">Enter Device Model</label>
+            <input type="text" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the device model" name="device_mdel" required>
         </div>
 
         <div class="form-group mt-4">
-            <label for="exampleInputPassword1">Phone Number</label>
-            <input type="text" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the Vendor's Number" name="vnum" required>
+            <label for="exampleInputPassword1">Purchase Date</label>
+            <input type="date" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the purchase date of device" name="purchase_date" required>
         </div>
 
+        <div class="form-group mt-4">
+            <label for="exampleInputPassword1">Warrenty Period</label>
+            <input type="number" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the warrenty in months" name="warrenty" required>
+        </div>
+
+        <div class="form-group mt-4">
+            <label for="exampleInputPassword1">Choose Vendor</label><br>
+                <select class="form-control mt-2 mb-2" id="inputGroupSelect03" name = "vendorid">
+                    {% for x in vendors %}
+                            {% if x.isactive == True %}
+                                 <option value="{{x.id}}">{{x.vendorName}}</option>
+                             {% endif %} 
+                    {% endfor %} 
+                </select>
+        </div>
 
         <small id="emailHelp" class="form-text text-dark-50">Make Sure to insert data carefully</small>
 

@@ -44,6 +44,24 @@ class vendors(models.Model):
         return self.vendorName
 
 
+
+
+class devicetypes(models.Model):
+    typename= models.CharField(max_length=50)
+
+        # most required fields
+    date_purchased = models.DateTimeField(auto_now_add=True)
+    isactive = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "devicetype"
+        verbose_name_plural = "devicestypes"
+
+    def __str__(self):
+        return self.typename
+
+
+
 class devices(models.Model):
     serialnum = models.CharField(max_length=50)
     hostname = models.CharField(max_length=100)
@@ -51,6 +69,7 @@ class devices(models.Model):
     purchasedate= models.DateField(auto_now_add=False)
     warrentyperiod = models.CharField(max_length=2)
     vendorid = models.ForeignKey(vendors, on_delete=models.CASCADE)
+    devicetypeid = models.ForeignKey(devicetypes, on_delete=models.CASCADE)
 
 
         # most required fields

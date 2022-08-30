@@ -26,5 +26,9 @@ urlpatterns = [
     path('records/', views.DataDashboard, name='Data records'),
     path('delete_vendor/', views.Delete_Vendors, name='Data deletion'),
     path('venderEdit/', views.venderEdit, name='Data edit'),
+    path('devicetypeSubmit/', views.devicetypeSubmit, name='Submitting device type'),
+    path('deviceSubmit/', views.deviceSubmit, name='Submitting device'),
+    path('deviceShow/', views.deviceShow, name='device data tables'),
+    path('delete_device/', views.deldevices, name='device delete'),
 
 ]

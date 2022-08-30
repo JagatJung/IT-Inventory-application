@@ -38,11 +38,13 @@
                 <table id="example" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Location</th>
-                            <th>Phone Number</th>
-                            <th>Email</th>
-                            <th>Start date</th>
+                            <th>Serial Number</th>
+                            <th>Host Name</th>
+                            <th>Device Model</th>
+                            <th>Purchase Date</th>
+                            <th>Warrenty Period</th>
+                            <th>Vendor</th>
+                            <th>Device Type</th>
                             <th class="noExport">Actions</th>
                         </tr>
                     </thead>
@@ -53,18 +55,22 @@
                         {% for x in member %}
                             {% if x.isactive == True %}
                             <tr>
-                                <td id="name_{{x.id}}" >{{x.vendorName}}</td>
-                                <td id="location_{{x.id}}">{{x.vendorLoaction}}</td>
-                                <td id="phone_{{x.id}}">{{x.vendorPhone}}</td>
-                                <td id="email_{{x.id}}">{{x.vendorEmail}}</td>
-                                <td>{{x.date_started}}</td>
+                                <td id = "serialnum_{{x.id}}">{{x.serialnum}}</td>
+                                <td id = "hostname_{{x.id}}">{{x.hostname}}</td>
+                                <td id = "devicemodel_{{x.id}}">{{x.devicemodel}}</td>
+                                <td id = "purchasedate_{{x.id}}">{{x.purchasedate}}</td>
+                                <td id = "warrenty_{{x.id}}">{{x.warrentyperiod}}</td>
+                                <td id = "vendorname_{{x.id}}">{{x.vendorName}}</td>
+                                <td id = "typename_{{x.id}}">{{x.typename}}</td>
+                                
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <button class="btn btn-primary float-left mx-2" value={{x.id}}>Reports</button>
 
                                         <button class="btn btn-warning float-left mx-2" data-toggle="modal" data-target="#myModal" onclick="openForm({{x.id}})">Edit</button>
-                                        <form action="/delete_vendor" method="get"> 
-                                            <input type="hidden" name="vid" value="{{x.id}}">
+                                        
+                                        <form action="/delete_device" method="get"> 
+                                            <input type="hidden" name="did" value="{{x.id}}">
                                             <button class="btn btn-danger float-left mx-2">Delete</button>
                                         </form>
                                         </div>
@@ -79,12 +85,14 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Serial Number</th>
+                            <th>Host Name</th>
+                            <th>Device Model</th>
+                            <th>Purchase Date</th>
+                            <th>Warrenty Period</th>
+                            <th>Vendor</th>
+                            <th>Device Type</th>
+                            <th class="noExport">Actions</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -99,7 +107,7 @@
 <!--adding the modal-->
         <!-- nav bar portion -->
         {% block modal %}
-          {% include "modal_edit_vendor.html" %}
+          {% include "modal_edit_device.html" %}
         {% endblock %}
 
 

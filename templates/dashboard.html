@@ -56,6 +56,7 @@
                   <li><a data-toggle="tab" href="#menu1" class="text-decoration-none">Menu 1</a></li>
                   <li><a data-toggle="tab" href="#menu2" class="text-decoration-none">Devices</a></li>
                   <li><a data-toggle="tab" href="#menu3" class="text-decoration-none">Vendor</a></li>
+                  <li><a data-toggle="tab" href="#menu4" class="text-decoration-none">Device Types</a></li>
                 </ul>
               
                 <div class="tab-content">
@@ -102,6 +103,13 @@
                        {% include "vendorform.html" %}
                     {% endblock %}
 
+                  </div>
+
+                   {% comment %} adding the vendor form here {% endcomment %}
+                   <div id="menu4" class="tab-pane fade">
+                    {% block devicetypeForm %}
+                       {% include "devicetypeform.html" %}
+                    {% endblock %}
                   </div>
 
                 </div>
