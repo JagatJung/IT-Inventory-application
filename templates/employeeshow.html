@@ -38,13 +38,13 @@
                 <table id="example" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Serial Number</th>
-                            <th>Host Name</th>
-                            <th>Device Model</th>
-                            <th>Purchase Date</th>
-                            <th>Warrenty Period</th>
-                            <th>Vendor</th>
-                            <th>Device Type</th>
+                            <th>Employee Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            
+                            <th>Post</th>
+                          
+                            <th>Admin Access</th>
                             <th class="noExport">Actions</th>
                         </tr>
                     </thead>
@@ -54,18 +54,26 @@
     
 
                         {% for x in member %}
-                            {% if x.isactive == True %}
                             <tr>
-                                <td id = "serialnum_{{x.id}}">{{x.serialnum}}</td>
-                                <td id = "hostname_{{x.id}}">{{x.hostname}}</td>
-                                <td id = "devicemodel_{{x.id}}">{{x.devicemodel}}</td>
-                                <td id = "purchasedate_{{x.id}}">{{ x.purchasedate |date:"Y-m-d" }}</td>
-                                <td id = "warrenty_{{x.id}}">{{x.warrentyperiod}}</td>
-                                <td id = "vendorname_{{x.id}}">{{x.vendorName}}</td>
-                                <td id = "typename_{{x.id}}">{{x.typename}}</td>
-                                <p id = "vendorid_{{x.id}}" hidden>{{x.vendorid_id}}</p>
-                                <p id = "typeid_{{x.id}}" hidden>{{x.devicetypeid_id}}</p>
+                                <td>{{x.Employee_id}}</td>
+                                <td>{{x.EmployeeName}}</td>
+                                <td>{{x.email}}</td>
                                 
+                                <td>
+                                    {% if x.isManager == True %}
+                                        Manager
+                                    {% else %}
+                                        Staff
+                                    {% endif %} 
+                                </td>
+
+                                <td>
+                                    {% if x.admin == True %}
+                                        Admin
+                                    {% else %}
+                                        User
+                                    {% endif %} 
+                                </td>
                                 
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -73,7 +81,7 @@
 
                                         <button class="btn btn-warning float-left mx-2" data-toggle="modal" data-target="#myModal" onclick="openForm({{x.id}})">Edit</button>
                                         
-                                        <form action="/delete_device" method="get"> 
+                                        <form action="/delete_Employee" method="get"> 
                                             <input type="hidden" name="did" value="{{x.id}}">
                                             <button class="btn btn-danger float-left mx-2">Delete</button>
                                         </form>
@@ -83,19 +91,19 @@
                                 
             
                             </tr>
-                            {% endif %} 
+                            
                         {% endfor %} 
 
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Serial Number</th>
-                            <th>Host Name</th>
-                            <th>Device Model</th>
-                            <th>Purchase Date</th>
-                            <th>Warrenty Period</th>
-                            <th>Vendor</th>
-                            <th>Device Type</th>
+                            <th>Employee Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            
+                            <th>Post</th>
+                          
+                            <th>Admin Access</th>
                             <th class="noExport">Actions</th>
                         </tr>
                     </tfoot>

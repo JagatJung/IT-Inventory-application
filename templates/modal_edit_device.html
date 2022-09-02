@@ -15,22 +15,23 @@
           
 
             <div class = "mt-4 col-12 p-2">
-                <form action="/venderEdit">
+                <form action="/deviceEdit">
                     
                     <div class = "form-group">
                         <label>Serial Numer</label>
-                        <input type="text" class="form-control mt-2" placeholder="Enter the Serial Number of Device" aria-label="Username" aria-describedby="basic-addon1" name="ser_num" required>
+                        <input type="text" class="form-control mt-2" placeholder="Enter the Serial Number of Device" aria-label="Username" aria-describedby="basic-addon1" name="ser_num" id="ser_num" required>
                     </div>
             
                     <div class="form-group mt-4">
                         <label>Host Name</label>
-                        <input type="text" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the host name of device" name="host_name" required>
+                        <input type="text" class="form-control mt-2 mb-2" placeholder="Enter the host name of device" id="host_name" name="host_name" required>
                     </div>
             
                     
                     <div class="form-group mt-4">
                         <label for="exampleInputPassword1">Device Type</label><br>
-                            <select class="form-control mt-2 mb-2" id="inputGroupSelect03" name = "type_id">
+                            <select class="form-control mt-2 mb-2" id="type_id" name = "type_id">
+                                <option value="" selected id="sltdtypes"></option>
                                 {% for x in types %}
                                 {% if x.isactive == True %}
                                              <option value="{{x.id}}">{{x.typename}}</option>
@@ -41,22 +42,23 @@
             
                     <div class="form-group mt-4">
                         <label for="exampleInputPassword1">Enter Device Model</label>
-                        <input type="text" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the device model" name="device_mdel" required>
+                        <input type="text" class="form-control mt-2 mb-2" id="device_mdel" placeholder="Enter the device model" name="device_mdel" required>
                     </div>
             
                     <div class="form-group mt-4">
                         <label for="exampleInputPassword1">Purchase Date</label>
-                        <input type="date" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the purchase date of device" name="purchase_date" required>
+                        <input type="date" class="form-control mt-2 mb-2" id="purchase_date" placeholder="Enter the purchase date of device" name="purchase_date" required>
                     </div>
             
                     <div class="form-group mt-4">
                         <label for="exampleInputPassword1">Warrenty Period</label>
-                        <input type="number" class="form-control mt-2 mb-2" id="exampleInputPassword1" placeholder="Enter the warrenty in months" name="warrenty" required>
+                        <input type="number" class="form-control mt-2 mb-2" id="warrenty" placeholder="Enter the warrenty in months" name="warrenty" required>
                     </div>
             
                     <div class="form-group mt-4">
                         <label for="exampleInputPassword1">Choose Vendor</label><br>
-                            <select class="form-control mt-2 mb-2" id="inputGroupSelect03" name = "vendorid">
+                            <select class="form-control mt-2 mb-2" id="vendorid" name = "vendorid">
+                                <option value='' id="sltvendor" selected></option>
                                 {% for x in vendors %}
                                         {% if x.isactive == True %}
                                              <option value="{{x.id}}">{{x.vendorName}}</option>
@@ -68,6 +70,7 @@
                     <small id="emailHelp" class="form-text text-dark-50">Make Sure to insert data carefully</small>
             
 
+                    <input type = "hidden" value="" id="did" name="did">
 
                     <div class="btn-group mt-3 w-100" role="group" aria-label="Basic example">
                         <button type="submit" class="btn btn-primary w-50 mx-1">Submit</button>
@@ -81,7 +84,6 @@
               <div class="modal-footer">
                 
               </div>
-        
       </div>
     </div>
   </div>
@@ -96,13 +98,27 @@
         var warrenty_id = "warrenty_"+mydata;
         var vendor_id = "vendorname_"+mydata;
         var type_id = "typename_"+mydata;
-        document.getElementById("modal_name").value = document.getElementById(get_name).innerHTML;
-        document.getElementById("modal_location").value = document.getElementById(get_location).innerHTML;
-        document.getElementById("modal_phone").value = document.getElementById(get_phone).innerHTML;
-        document.getElementById("modal_email").value = document.getElementById(get_email).innerHTML;
+        var vid = "vendorid_"+mydata;
+        var tid = "typeid_"+mydata;
+
+        document.getElementById("did").value = mydata;
+
+        document.getElementById("ser_num").value = document.getElementById(snum).innerHTML;
+        //alert(document.getElementById(hst_id).innerHTML)
+        document.getElementById("host_name").value = document.getElementById(hst_id).innerHTML;
+        document.getElementById("device_mdel").value = document.getElementById(model_id).innerHTML;
+        document.getElementById("purchase_date").value = document.getElementById(purchase_id).innerHTML;
+        document.getElementById("warrenty").value = document.getElementById(warrenty_id).innerHTML;
+        
+        //-==============================
+        document.getElementById("sltvendor").value = document.getElementById(vid).innerHTML;
+        document.getElementById("sltvendor").innerHTML = document.getElementById(vendor_id).innerHTML;
+        //-==============================
+        document.getElementById("sltdtypes").value = document.getElementById(tid).innerHTML;
+        document.getElementById("sltdtypes").innerHTML = document.getElementById(type_id).innerHTML;;
+        //-==============================
         document.getElementById("ModalHeading").innerHTML = "Editing : " +document.getElementById(snum).innerHTML;
         document.getElementById("modal_id").value = mydata;
-        
     }
 
 

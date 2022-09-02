@@ -1,5 +1,6 @@
 from asyncio.windows_events import NULL
 from logging import exception
+from urllib import request
 from xmlrpc.client import Boolean
 from django.shortcuts import render,redirect
 from accounts.models import devices, useraccounts, vendors , devicetypes
@@ -31,12 +32,15 @@ def dashboard(request):
     request.session['email']
     all_vendors= vendors.objects.all().values()
     all_types= devicetypes.objects.all().values()
+    all_managers = useraccounts.objects.filter(isManager= True).values()
+    
     mydata={
         'value':2 ,
         'vendors': all_vendors,
         'types':all_types,
+        'managers':all_managers,
     }
-
+    # print(mydata['managers'])
     return render(request,'dashboard.html',mydata)
 
 #showing records star here==========================================================
@@ -142,3 +146,57 @@ def deldevices(request):
     member.isactive = False
     member.save()
     return redirect('/deviceShow/')
+
+def deviceEdit(request):
+    did = str (request.GET.get('did'))
+    serialnum = str (request.GET.get('ser_num'))
+    hostname = str (request.GET.get('host_name'))
+    devicemodel = str (request.GET.get('device_mdel'))
+    purchasedate = str (request.GET.get('purchase_date'))
+    warrentyperiod = str (request.GET.get('warrenty'))
+    vendor_id = str (request.GET.get('vendorid'))
+    type_id = str (request.GET.get('type_id'))
+
+    member = devices.objects.get(id=did)
+    member.serialnum = serialnum
+    member.hostname = hostname
+    member.devicemodel =devicemodel
+    member.purchasedate = purchasedate
+    member.warrentyperiod = warrentyperiod
+    member.vendorid_id = vendor_id
+    member.devicetypeid_id=type_id
+    member.save()
+    
+    return redirect('/deviceShow/')
+
+#====================================employee actions starts here
+def registeruser(request):
+    username = str (request.GET.get('username'))
+    employee_id = str (request.GET.get('employee_id'))
+    email = str (request.GET.get('email'))
+    dep = str(request.GET.get('dep'))
+    ismanager = bool (request.GET.get('ismanager'))
+    isadmin = bool (request.GET.get('isadmin'))
+    print(isadmin)
+    temp = dep.split("_")
+    try:
+        all_users = useraccounts(email =email, EmployeeName = username, Employee_id = employee_id, DepartmentName = temp[1], ManagerID = temp[0], isManager = ismanager, isadmin = isadmin)
+        all_users.save()
+    except:
+        print('Something went wrong')
+    return redirect('../dashboard/', )
+
+def employeeShow(request):
+    all_users = useraccounts.objects.filter(isactive=True).values()
+    members= {
+        'member':all_users,
+    }
+    
+    return render (request, 'employeeShow.html',members)
+
+def delete_Employee(request):
+    eid = request.GET.get('did')
+    employee = useraccounts.objects.get(id=eid)
+    employee.isactive = False
+    employee.save()
+    return redirect('/employeeShow')    
