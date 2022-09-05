@@ -188,8 +188,10 @@ def registeruser(request):
 
 def employeeShow(request):
     all_users = useraccounts.objects.filter(isactive=True).values()
+    all_managers = useraccounts.objects.filter(isManager= True).values()
     members= {
         'member':all_users,
+        'managers':all_managers,
     }
     
     return render (request, 'employeeShow.html',members)
@@ -200,3 +202,27 @@ def delete_Employee(request):
     employee.isactive = False
     employee.save()
     return redirect('/employeeShow')    
+
+def edit_Employee(request):
+    eid = str(request.GET.get('id'))
+    username = str (request.GET.get('username'))
+    employee_id = str (request.GET.get('employee_id'))
+    email = str (request.GET.get('email'))
+    dep = str(request.GET.get('dep'))
+    ismanager = bool (request.GET.get('ismanager'))
+    isadmin = bool (request.GET.get('isadmin'))
+    print(isadmin)
+    temp = dep.split("_")
+    try:
+        all_users = useraccounts.objects.get(id = eid)
+        all_users.email =email
+        all_users.EmployeeName = username
+        all_users.Employee_id = employee_id
+        all_users.DepartmentName = temp[1]
+        all_users.ManagerID = temp[0]
+        all_users.isManager = ismanager
+        all_users.isadmin = isadmin
+        all_users.save()
+    except:
+        print('Something went wrong')
+    return redirect('/employeeShow') 

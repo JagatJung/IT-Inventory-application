@@ -40,5 +40,6 @@ urlpatterns = [
     path('registeruser/', views.registeruser, name='insterting the users'),
     path('employeeShow/', views.employeeShow, name='data table of the users'),
     path('delete_Employee/', views.delete_Employee, name='data table of the users'),
+    path('edit_Employee/', views.edit_Employee, name='data table of the users'),
 
 ]

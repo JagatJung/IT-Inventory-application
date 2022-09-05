@@ -41,6 +41,7 @@
                             <th>Employee Id</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Department</th>
                             
                             <th>Post</th>
                           
@@ -55,11 +56,12 @@
 
                         {% for x in member %}
                             <tr>
-                                <td>{{x.Employee_id}}</td>
-                                <td>{{x.EmployeeName}}</td>
-                                <td>{{x.email}}</td>
+                                <td id="eid_{{x.id}}">{{x.Employee_id}}</td>
+                                <td id="ename_{{x.id}}">{{x.EmployeeName}}</td>
+                                <td id="email_{{x.id}}">{{x.email}}</td>
+                                <td id="dep_{{x.id}}">{{x.DepartmentName}}</td>
                                 
-                                <td>
+                                <td id="manager_{{x.id}}">
                                     {% if x.isManager == True %}
                                         Manager
                                     {% else %}
@@ -67,8 +69,8 @@
                                     {% endif %} 
                                 </td>
 
-                                <td>
-                                    {% if x.admin == True %}
+                                <td id="admin_{{x.id}}">
+                                    {% if x.isadmin == True %}
                                         Admin
                                     {% else %}
                                         User
@@ -91,7 +93,7 @@
                                 
             
                             </tr>
-                            
+                            <p id="mid_{{x.id}}" hidden>{{x.ManagerID}}_{{x.DepartmentName}}</p>
                         {% endfor %} 
 
                     </tbody>
@@ -100,7 +102,7 @@
                             <th>Employee Id</th>
                             <th>Name</th>
                             <th>Email</th>
-                            
+                            <th>Department</th>
                             <th>Post</th>
                           
                             <th>Admin Access</th>
@@ -119,7 +121,7 @@
 <!--adding the modal-->
         <!-- nav bar portion -->
         {% block modal %}
-          {% include "modal_edit_device.html" %}
+          {% include "modalEmployee.html" %}
         {% endblock %}
 
 
