@@ -45,6 +45,7 @@
                             <th>Warrenty Period</th>
                             <th>Vendor</th>
                             <th>Device Type</th>
+                            <th>Availability</th>
                             <th class="noExport">Actions</th>
                         </tr>
                     </thead>
@@ -59,19 +60,41 @@
                                 <td id = "serialnum_{{x.id}}">{{x.serialnum}}</td>
                                 <td id = "hostname_{{x.id}}">{{x.hostname}}</td>
                                 <td id = "devicemodel_{{x.id}}">{{x.devicemodel}}</td>
-                                <td id = "purchasedate_{{x.id}}">{{ x.purchasedate |date:"Y-m-d" }}</td>
+                                <td id = "purchasedate_{{x.id}}">{{ x.purchasedate | date:"Y-m-d" }}</td>
                                 <td id = "warrenty_{{x.id}}">{{x.warrentyperiod}}</td>
                                 <td id = "vendorname_{{x.id}}">{{x.vendorName}}</td>
                                 <td id = "typename_{{x.id}}">{{x.typename}}</td>
+                                <td>
+                                    {% if x.isavailable == True %}
+                                         Availiable
+                                    {%else %}
+                                        Not Availiable
+
+                                    {% endif %}
+                                </td>
                                 <p id = "vendorid_{{x.id}}" hidden>{{x.vendorid_id}}</p>
                                 <p id = "typeid_{{x.id}}" hidden>{{x.devicetypeid_id}}</p>
                                 
                                 
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
+                                    
+                                    
+                                    
+                                        {% if x.isavailable == True %}
+                                        <!-- Button Modal -->
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2" onclick="getdeviceid({{x.id}})">
+                                                Request
+                                            </button>
+                                         {%else %}
+                                         
+
+                                        {% endif %}
+
+                                    
                                         <button class="btn btn-primary float-left mx-2" value={{x.id}}>Reports</button>
 
-                                        <button class="btn btn-warning float-left mx-2" data-toggle="modal" data-target="#myModal" onclick="openForm({{x.id}})">Edit</button>
+                                        <button type="button" class="btn btn-warning float-left mx-2" data-toggle="modal" data-target="#myModal" onclick="openForm({{x.id}})">Edit</button>
                                         
                                         <form action="/delete_device" method="get"> 
                                             <input type="hidden" name="did" value="{{x.id}}">
@@ -96,6 +119,7 @@
                             <th>Warrenty Period</th>
                             <th>Vendor</th>
                             <th>Device Type</th>
+                            <th>Availability</th>
                             <th class="noExport">Actions</th>
                         </tr>
                     </tfoot>
@@ -169,7 +193,7 @@ $(document).ready(function() {
     } );
 } );
 
-document.getElementById("buttons-html5").style.backgroundColor = "red";
+
 </script>
 </body>
 </html>

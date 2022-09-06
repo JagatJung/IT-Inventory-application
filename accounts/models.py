@@ -1,4 +1,5 @@
 from curses.ascii import NUL
+from tabnanny import verbose
 from django.db import models
 
 # Create your models here.
@@ -75,6 +76,7 @@ class devices(models.Model):
         # most required fields
     date_purchased = models.DateTimeField(auto_now_add=True)
     isactive = models.BooleanField(default=False)
+    isavailable = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "device"
@@ -82,3 +84,22 @@ class devices(models.Model):
 
     def __str__(self):
         return self.hostname
+
+class issues(models.Model):
+    state = models.CharField(max_length=100)
+    issuedate = models.DateField()
+    returndate = models.DateField()
+
+    deviceid = models.ForeignKey(devices, on_delete=models.CASCADE)
+    employeeeid = models.ForeignKey(useraccounts, on_delete=models.CASCADE)
+    
+    isactive = models.BooleanField(default=False)
+    date_recorded = models.DateTimeField(auto_now_add=True)
+    
+
+    class Meta:
+        verbose_name ="issue"
+        verbose_name_plural = "issues"
+
+    def __str__(self):
+        return (str(self.date_recorded))

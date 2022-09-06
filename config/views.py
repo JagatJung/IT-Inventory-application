@@ -3,7 +3,7 @@ from logging import exception
 from urllib import request
 from xmlrpc.client import Boolean
 from django.shortcuts import render,redirect
-from accounts.models import devices, useraccounts, vendors , devicetypes
+from accounts.models import devices, useraccounts, vendors , devicetypes, issues
 from django.db import connection
 
 # home page code=========================================================
@@ -33,12 +33,16 @@ def dashboard(request):
     all_vendors= vendors.objects.all().values()
     all_types= devicetypes.objects.all().values()
     all_managers = useraccounts.objects.filter(isManager= True).values()
+    # all_employees = useraccounts.objects.filter(isactive= True).values()
+    # all_devices = devices.objects.filter(isactive= True, isavailable = True).values()
     
     mydata={
         'value':2 ,
         'vendors': all_vendors,
         'types':all_types,
         'managers':all_managers,
+        # 'employees':all_employees,
+        # 'devices':all_devices,
     }
     # print(mydata['managers'])
     return render(request,'dashboard.html',mydata)
@@ -127,11 +131,15 @@ def deviceShow(request):
     objs = devices.objects.raw('SELECT * FROM accounts_devices, accounts_vendors, accounts_devicetypes WHERE accounts_devices.vendorid_id = accounts_vendors.id AND accounts_devices.devicetypeid_id = accounts_devicetypes.id')
     all_types= devicetypes.objects.all().values()
     all_vendors= vendors.objects.all().values()
+    all_employees= useraccounts.objects.filter().values()
+    all_issues = issues.objects.all().values()
     members = {
         'member' : objs,
         'types' : all_types,
-        'vendors' : all_vendors
+        'vendors' : all_vendors,
+        'employees' : all_employees,
     }
+
     # for r in devices.objects.raw('SELECT * FROM accounts_devices, accounts_vendors, accounts_devicetypes WHERE accounts_devices.vendorid_id = accounts_vendors.id AND accounts_devices.devicetypeid_id = accounts_devicetypes.id'):
     #     print(r.__dict__)
 
@@ -226,3 +234,21 @@ def edit_Employee(request):
     except:
         print('Something went wrong')
     return redirect('/employeeShow') 
+
+#===issue actions starts from here====================================================================
+
+def registerissue(request):
+    
+    state = "Requested"
+    issuedate = "1720-09-09"
+    returndate =    "1720-09-09"
+    deviceid_id =str(request.GET.get('device_id'))
+    employeeeid_id = str(request.GET.get('emp_id'))
+    
+    try:
+        all_issue = issues(state = state, issuedate = issuedate, returndate = returndate, deviceid_id = deviceid_id, employeeeid_id = employeeeid_id, isactive =True)
+        all_issue.save()
+    except:
+        print('Something went wrong')
+    return redirect('/deviceShow/')
+ 
