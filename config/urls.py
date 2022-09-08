@@ -44,4 +44,6 @@ urlpatterns = [
 
     #==========================================
     path('registerissue/', views.registerissue, name='registering the issues'),
+    path('showIssue/', views.showIssue, name='showing issues'),
+    path('delete_issue/', views.deleteIssue, name='showing issues'),
 ]

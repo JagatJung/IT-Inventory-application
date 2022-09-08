@@ -252,3 +252,31 @@ def registerissue(request):
         print('Something went wrong')
     return redirect('/deviceShow/')
  
+
+def showIssue(request):
+    issues_show = devices.objects.raw('SELECT * FROM accounts_devices, accounts_issues, accounts_useraccounts WHERE accounts_issues.deviceid_id = accounts_devices.id AND accounts_issues.employeeeid_id = accounts_useraccounts.id AND accounts_issues.isactive ==True ORDER BY accounts_issues.issuedate DESC' )
+    members= {
+        'member':issues_show,
+    }
+    #for r in devices.objects.raw('SELECT * FROM accounts_devices, accounts_issues, accounts_useraccounts WHERE accounts_issues.deviceid_id = accounts_devices.id AND accounts_issues.employeeeid_id = accounts_useraccounts.id'):
+    #    print(r.__dict__)
+
+    # tables = connection.introspection.table_names()
+    # seen_models = connection.introspection.installed_models(tables)
+    # print(seen_models)
+    return render(request, 'issueShow.html', members)
+
+
+def deleteIssue(request):
+    eid = str(request.GET.get('issue_id'))
+    try:
+        
+        the_issue = issues.objects.get(id=eid)
+        the_issue.isactive = False
+        the_issue.save()
+    except:
+        print('Something went wrong')
+    return redirect('/showIssue/')
+
+#===========================issue ends here===============================
+
