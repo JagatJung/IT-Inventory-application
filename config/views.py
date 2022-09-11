@@ -95,6 +95,24 @@ def venderEdit(request):
     member.save()
     return redirect('/records/')
 
+
+
+def vendorReport(request, id):
+
+    the_vendor = vendors.objects.get(id=id)
+    the_devices = devices.objects.filter(vendorid_id=id).values
+    the_types = devices.objects.raw("SELECT accounts_devicetypes.id,accounts_devicetypes.typename, COUNT(accounts_devices.devicetypeid_id) as 'typecount' from accounts_devices, accounts_devicetypes WHERE accounts_devices.vendorid_id = 1 AND accounts_devices.devicetypeid_id = accounts_devicetypes.id  GROUP BY accounts_devicetypes.typename")
+    memebers={
+        'member':the_vendor,
+        'device': the_devices,
+        'total':devices.objects.filter(vendorid_id=id).count(),
+        'active':devices.objects.filter(vendorid_id=id, isactive=True).count(),
+        'inactive':devices.objects.filter(vendorid_id=id, isactive=False).count(),
+        'device_count':the_types,
+    }
+    for i in the_types:
+        print(i.__dict__)
+    return render(request, 'vendorReport.html',memebers)
 # Vendor acions ends here========================================================
 
 #-=============decive type
