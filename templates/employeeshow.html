@@ -1,0 +1,185 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- bootstrap cdns -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<!-- bootstrap cdns -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+
+
+<link rel="icon" href="{% static 'images/logo.png' %}">
+<title>DashBoard</title>
+</head>
+<body >
+
+    <div class="d-flex dash-hight">
+        <!-- nav bar portion -->
+        {% block navbar %}
+          {% include "sidenavbar.html" %}
+        {% endblock %}
+
+
+        <!-- main body starts -->
+        <div class="p-2 flex-fill bd-highlight bg-dash col-12 col-md-10 px-3 overflow-auto">
+            <div class="container text-dark col-12 mt-5">
+                <table id="example" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Employee Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            
+                            <th>Post</th>
+                          
+                            <th>Admin Access</th>
+                            <th class="noExport">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    
+    
+
+                        {% for x in member %}
+                            <tr>
+                                <td id="eid_{{x.id}}">{{x.Employee_id}}</td>
+                                <td id="ename_{{x.id}}">{{x.EmployeeName}}</td>
+                                <td id="email_{{x.id}}">{{x.email}}</td>
+                                <td id="dep_{{x.id}}">{{x.DepartmentName}}</td>
+                                
+                                <td id="manager_{{x.id}}">
+                                    {% if x.isManager == True %}
+                                        Manager
+                                    {% else %}
+                                        Staff
+                                    {% endif %} 
+                                </td>
+
+                                <td id="admin_{{x.id}}">
+                                    {% if x.isadmin == True %}
+                                        Admin
+                                    {% else %}
+                                        User
+                                    {% endif %} 
+                                </td>
+                                
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button class="btn btn-primary float-left mx-2" value={{x.id}}>Reports</button>
+
+                                        <button class="btn btn-warning float-left mx-2" data-toggle="modal" data-target="#myModal" onclick="openForm({{x.id}})">Edit</button>
+                                        
+                                        <form action="/delete_Employee" method="get"> 
+                                            <input type="hidden" name="did" value="{{x.id}}">
+                                            <button class="btn btn-danger float-left mx-2">Delete</button>
+                                        </form>
+                                        </div>
+
+                                </td>
+                                
+            
+                            </tr>
+                            <p id="mid_{{x.id}}" hidden>{{x.ManagerID}}_{{x.DepartmentName}}</p>
+                        {% endfor %} 
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Employee Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Post</th>
+                          
+                            <th>Admin Access</th>
+                            <th class="noExport">Actions</th>
+                        </tr>
+                    </tfoot>
+                </table>
+              </div>
+        </div>
+        <!-- main body ends -->
+
+    </div>
+
+    
+
+<!--adding the modal-->
+        <!-- nav bar portion -->
+        {% block modal %}
+          {% include "modalEmployee.html" %}
+        {% endblock %}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [{
+            extend: 'pdf',
+         
+            exportOptions: {
+                columns: "thead th:not(.noExport)"
+            }
+        },{
+            extend: 'excel',
+            
+            exportOptions: {
+                columns: "thead th:not(.noExport)"
+            }
+        }, {
+            extend: 'csv',
+            
+            exportOptions: {
+                columns: "thead th:not(.noExport)"
+            }
+        }, {
+            extend: 'print',
+            
+            exportOptions: {
+                columns: "thead th:not(.noExport)"
+            }
+        }, {
+            extend: 'copy',
+            
+            exportOptions: {
+                columns: "thead th:not(.noExport)"
+            }
+        }
+    ]
+    } );
+} );
+
+document.getElementById("buttons-html5").style.backgroundColor = "red";
+</script>
+</body>
+</html>

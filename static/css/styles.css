@@ -45,3 +45,7 @@ body, html {
 .hvrbtn:hover{
     background-color: rgb(14, 100, 175);
 }
+
+.dt-button{
+    background-color: rgb(14, 100, 175);
+}

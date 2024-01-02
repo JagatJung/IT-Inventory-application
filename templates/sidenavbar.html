@@ -1,0 +1,102 @@
+{%load static%}
+
+<style>
+    
+    
+    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+    .dropdown-container {
+      display: none;
+      padding-left: 8px;
+    }
+
+    .nav-li{
+        list-style-type: none;
+    }
+    
+    .dphvr:hover{
+        background-color: rgb(6, 57, 102);
+    }
+    
+    </style>
+
+<div class="p-2 flex-fill bd-highlight unl-btn col-2 d-none d-md-block d-lg-block ">
+    <div class="container-fluid">
+        <img class="img-fluid w-50 mx-auto d-block mt-4 mb-1 " src="{% static 'images/logo2.png' %}" alt="">
+        <hr class="bg-light bg-opacity-75 pt-1">
+        <div class="d-flex align-items-start flex-column bd-highlight mb-3 h-100 ">
+                <div class="px-3 py-3 w-100 unl-btn my-2 text-light font-weight-bold hvrbtn rounded"> <a  href="/dashboard" class="text-decoration-none text-light"><i class="fas fa-edit mr-5" style="text-align:right;"></i> &nbsp Entry</a></div>
+
+
+                {% comment %} dro down code starts here {% endcomment %}
+                <div class="px-3 py-3 w-100 unl-btn my-2 text-light font-weight-bold hvrbtn rounded"> 
+                    <div class="text-decoration-none text-light">
+
+                    <span class="dropdown-btn">
+
+                        <i class="fas fa-database mr-5"></i>&nbsp Records
+
+                        <i class="fa fa-caret-down pull-right dropdown-btn"></i>
+                    </span>
+
+                    <ul class="dropdown-container mt-3">
+                        
+                        <li class="nav-li">
+                            <div class="px-3 py-3 w-100 my-2 text-light font-weight-bold rounded dphvr">
+                                <a  href="/showIssue" class="text-decoration-none text-light">
+                                    Issues
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="nav-li">
+                            <div class="px-3 py-3 w-100 my-2 text-light font-weight-bold rounded dphvr">
+                                <a  href="/employeeShow" class="text-decoration-none text-light">
+                                    Employee
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="nav-li">
+                            <div class="px-3 py-3 w-100 my-2 text-light font-weight-bold rounded dphvr">
+                                <a  href="/deviceShow" class="text-decoration-none text-light">
+                                    Device
+                                </a>
+                            </div>
+                        </li>
+                        
+                        <li class="nav-li">
+                            <div class="px-3 py-3 w-100 my-2 text-light font-weight-bold rounded dphvr">
+                                <a  href="/records" class="text-decoration-none text-light">
+                                    Vendor
+                                </a>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div></div>
+
+
+                {% comment %} drop down code endds here {% endcomment %}
+                <div class="px-3 py-3 w-100 unl-btn my-2 text-light font-weight-bold hvrbtn rounded"><a  href="/records" class="text-decoration-none text-light"><i class="fas fa-chart-line mr-5"></i>&nbsp Dashboard</a></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+    
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+    </script>
+    
